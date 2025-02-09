@@ -1,0 +1,47 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
+  pull_request:
+    branches:
+      - main  # Trigger on PR to main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Cache Docker layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+
+    - name: Build Docker image
+      run: |
+        docker build --no-cache -t my-api .
+
+    - name: Run tests (Mocha or Jest)
+      run: |
+        docker run --rm my-api npm test
+
+    - name: Push Docker image to Docker Hub
+      run: |
+        docker login -u akshat46 -p ${{ secrets.DOCKER_PASSWORD }}
+        docker tag my-api:latest akshat46/my-api:latest
+        docker push akshat46/my-api:latest
+
+    - name: Deploy to Staging (Optional)
+      run: |
+        ssh -i ${{ secrets.STAGING_SERVER_SSH_KEY }} user@staging-server "docker pull akshat46/my-api:latest && docker-compose up -d"
+
