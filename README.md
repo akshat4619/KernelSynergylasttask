@@ -86,7 +86,9 @@ This will build the Docker image and start the containers for both the API and t
 Access the API at http://localhost:5000.
 
 CI/CD Pipeline Configuration
+
 GitHub Actions
+
 The CI/CD pipeline is configured using GitHub Actions. The pipeline triggers on every push to the main branch.
 
 Pipeline Stages
