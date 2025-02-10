@@ -90,6 +90,7 @@ Build:
 
 Build the Docker image for the API.
 Push the image to Docker Hub.
+
 Test:
 
 Run automated unit and integration tests using Mocha or Jest.
