@@ -1,0 +1,28 @@
+version: "3"
+services:
+  api:
+    image: akshat46/my-api:latest
+    container_name: my-api-container
+    restart: always
+    ports:
+      - "5001:5000"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgres://postgres:yourpassword@db:5432/user_auth_api
+
+  db:
+    image: postgres:latest
+    container_name: my-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: MRzenix05
+      POSTGRES_DB: user_auth_api
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+
