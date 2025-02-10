@@ -73,10 +73,13 @@ This project involves building a RESTful API with CRUD operations for **Users**,
    ```bash
    git clone https://github.com/your-repository/advanced-api.git
    cd advanced-api
+   
    Build the Docker container:
+   
+    docker-compose up --build
+  
 
-bash
-docker-compose up --build
+
 
 This will build the Docker image and start the containers for both the API and the mock database.
 
