@@ -14,7 +14,7 @@ This project involves building a RESTful API with CRUD operations for **Users**,
 
 - **Backend Framework**: Node.js with Express.js
 - **Database**: PostgreSql
-- **Authentication**: JWT tokens/API keys
+- **Authentication**: JWT tokens
 - **Containerization**: Docker
 - **CI/CD**: GitHub Actions 
 
@@ -77,6 +77,7 @@ This project involves building a RESTful API with CRUD operations for **Users**,
 
 bash
 docker-compose up --build
+
 This will build the Docker image and start the containers for both the API and the mock database.
 
 Access the API at http://localhost:5000.
@@ -86,6 +87,7 @@ GitHub Actions
 The CI/CD pipeline is configured using GitHub Actions. The pipeline triggers on every push to the main branch.
 
 Pipeline Stages
+
 Build:
 
 Build the Docker image for the API.
